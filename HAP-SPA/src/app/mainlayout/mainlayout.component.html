@@ -1,0 +1,223 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar style="background-color: #3f51b5; padding: 5%">
+            <img src="assets/images/logo.png" width="90%" height="90% " alt="" />
+        </mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
+                <mat-icon aria-label="Side nav toggle icon" class="icon-space">dashboard</mat-icon>
+                Dashboard
+            </a>
+            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
+            <ng-container *appHasRight="{ controller: 'IRF', permission: 'Search' }">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">
+                            <img src="assets/icons/disaster2.png" width="24px" height="24px" alt="" />
+                        </mat-icon>
+                        IRF
+                    </mat-expansion-panel-header>
+                    <a *appHasRight="{ controller: 'IRF', permission: 'Add' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">post_add</mat-icon>
+                        Add
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">search</mat-icon>
+                        Search
+                    </a>
+                </mat-expansion-panel>
+
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRight="{ controller: 'RAF', permission: 'Search' }">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">note_alt
+                        </mat-icon>
+                        RAF
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">search</mat-icon>
+                        Search
+                    </a>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRight="{ controller: 'FAF', permission: 'Search' }">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">family_restroom
+                        </mat-icon>
+                        FAF
+
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">search</mat-icon>
+                        Search
+                    </a>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRight="{ controller: 'Winterization', permission: 'Search' }">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">ac_unit
+                        </mat-icon>
+                        Winterization
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">search</mat-icon>
+                        Search
+                    </a>
+                </mat-expansion-panel>
+
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRight="{ controller: 'Warehouse', permission: 'Search' }">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">house
+                        </mat-icon>
+                        Warehouse Management
+                    </mat-expansion-panel-header>
+                    <a *appHasRight="{ controller: 'Warehouse', permission: 'Add' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">post_add</mat-icon>
+                        Add
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">search</mat-icon>
+                        Search
+                    </a>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">analytics
+                        </mat-icon>
+                        Reports
+                    </mat-expansion-panel-header>
+                    <a *appHasRight="{ controller: 'IRF', permission: 'Download' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">
+                            <img src="assets/icons/disaster2.png" width="24px" height="24px" alt="" />
+                        </mat-icon>
+                        IRF
+                    </a>
+                    <a *appHasRight="{ controller: 'RAF', permission: 'Download' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">note_alt</mat-icon>
+                        RAF
+                    </a>
+                    <a *appHasRight="{ controller: 'FAF', permission: 'Download' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">family_restroom</mat-icon>
+                        FAF
+                    </a>
+                    <a *appHasRight="{ controller: 'Winterization', permission: 'Download' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">ac_unit</mat-icon>
+                        Winterization
+                    </a>
+                    <a *appHasRight="{ controller: 'Warehouse', permission: 'Download' }" mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">house</mat-icon>
+                        Warehouse
+                    </a>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRole="['Admin']">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">manage_search
+                        </mat-icon>
+                        Lookups Management
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">location_city</mat-icon>
+                        District
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">holiday_village</mat-icon>
+                        Village
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">list</mat-icon>
+                        General Lookups
+                    </a>
+                </mat-expansion-panel>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <ng-container *appHasRole="['Admin']">
+                <a mat-list-item [routerLink]="['/userManagement']" routerLinkActive="router-link-active">
+                    <mat-icon aria-label="Side nav toggle icon" class="icon-space">group</mat-icon>
+                    Users Management
+                </a>
+                <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </ng-container>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div>
+            <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center" style="font-size: 14px; font-weight: 500">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <h1 style="overflow: hidden">
+                    Humanitarian Assistance Information Management System
+                </h1>
+
+                <div style="margin-left: auto" fxFlex fxLayout="row" fxLayoutAlign="end center">
+                    <p style="margin: 0px">&nbsp;&nbsp; Notifications</p>
+                    <button mat-icon-button [matMenuTriggerFor]="noteMenu" aria-label="Notification with  menu">
+                        <mat-icon matBadge="4" matBadgeColor="accent">notifications</mat-icon>
+                    </button>
+                    <mat-menu #noteMenu="matMenu" fxf>
+                        <button mat-menu-item>
+                            <mat-icon>notifications_active</mat-icon>
+                            <span>IRF Notification</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>notifications_active</mat-icon>
+                            <span>RAF Notification</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>notifications_active</mat-icon>
+                            <span>Warehouse notification</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>notifications_active</mat-icon>
+                            <span>FAF notification</span>
+                        </button>
+                    </mat-menu>
+                </div>
+                <div style="margin-left: auto" fxLayout="row" fxLayoutAlign="end center">
+                    <p style="margin: 0px">
+                        &nbsp;&nbsp; Welcome {{ currentUser?.displayName }}
+                    </p>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Button with a menu">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" fxf>
+                        <button mat-menu-item (click)="changePassword()">
+                            <mat-icon>vpn_key</mat-icon>
+                            <span>Change Password</span>
+                        </button>
+                        <button mat-menu-item (click)="logout()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </mat-toolbar>
+        </div>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

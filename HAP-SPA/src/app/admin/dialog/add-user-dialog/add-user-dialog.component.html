@@ -1,0 +1,76 @@
+<!-- [mat-dialog-close]="data.animal" -->
+<form [formGroup]="userService.addUserForm" novalidate (ngSubmit)="addUser()">
+    <h1 mat-dialog-title>Add new user</h1>
+    <div mat-dialog-content>
+        <div fxLayout="column">
+            <mat-form-field class="full-width" fxFlex="0 1 calc(50% - 32px)">
+                <input formControlName="userName" matInput placeholder="User Name">
+                <mat-error *ngIf="f.userName.hasError('required')">
+                    User name is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="f.userName.errors?.uniqueUserName">
+                    User name is <strong>not available</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input formControlName="displayName" matInput placeholder="Display Name">
+                <mat-error *ngIf="userSubmitted && f.displayName.hasError('required')">
+                    Display name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input placeholder="Email" matInput formControlName="email" />
+                <mat-error *ngIf="userSubmitted && f.email.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="userSubmitted && f.email.hasError('pattern')">
+                    The format is not correct
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Region" (selectionChange)="RegionChanged($event)" formControlName="region">
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let region of regions" [value]="region.lookupName">
+                        {{region.lookupName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Province" formControlName="province">
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let province of provinces" [value]="province.lookupName">
+                        {{province.lookupName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Roles</mat-label>
+                <mat-select formControlName="roles" multiple>
+                    <mat-option *ngFor="let role of userService.availableRoles" [value]="role">{{role}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="userSubmitted && f.roles.hasError('required')">
+                    Roles name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="password" formControlName="password" matInput placeholder="Password">
+                <mat-error *ngIf="userSubmitted && f.password.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="password" formControlName="confirmPassword" matInput placeholder="Confirm password">
+                <mat-error *ngIf="userSubmitted && f.confirmPassword.hasError('required')">
+                    Confirm password is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="f.confirmPassword.errors?.mustMatch">
+                    Confirm password <strong>not match</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-button type="button" (click)="cancelClick()">Cancel</button>
+        <button mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
+    </div>
+</form>

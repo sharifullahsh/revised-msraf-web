@@ -1,0 +1,110 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px !important;
+}
+
+.hide {
+    display: none;
+}
+
+.successAlert {
+    background-color: #28a745!important;
+    color: white;
+}
+
+.dangerAlert {
+    background-color: #dc3545!important;
+    color: white;
+}
+
+.infoAlert {
+    background-color: #17a2b8!important;
+    color: white;
+}
+
+.p5 {
+    padding: 5px !important;
+}
+
+.p10 {
+    padding: 10px;
+}
+
+.m5 {
+    margin: 5px !important;
+}
+
+.m10 {
+    margin: 10px !important;
+}
+
+.pt10 {
+    padding-top: 10px !important;
+}
+
+.mt10 {
+    margin-top: 10px !important;
+}
+
+.pt20 {
+    padding-top: 20px !important;
+}
+
+.mt20 {
+    margin-top: 20px !important;
+}
+
+.pb10 {
+    padding-top: 10px !important;
+}
+
+.mb10 {
+    margin-top: 10px !important;
+}
+
+.pb20 {
+    padding-top: 20px !important;
+}
+
+.mb20 {
+    margin-top: 20px !important;
+}
+
+.form-control {
+    box-sizing: border-box;
+    border: 1px solid gray !important;
+    border-radius: 0.25em;
+    padding: 5px 1px !important;
+    line-height: 14px !important;
+    width: 100% !important;
+    /* height: calc(1.5em + 0.75rem + 0px); */
+}
+
+.is-invalid {
+    box-sizing: border-box;
+    border: 1px solid red !important;
+    border-radius: 0.25em;
+    padding: 5px 1px !important;
+    line-height: 14px !important;
+    width: 100% !important;
+    /* height: calc(1.5em + .75rem + 0px); */
+}
+
+.btn-add-ind {
+    line-height: 30px !important;
+    padding: 0 13px !important;
+}
+
+.error {
+    display: block;
+    color: #f44336;
+    font-size: 75%;
+}

@@ -1,0 +1,28 @@
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.deps.json
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.json
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.dev.json
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.dll
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.pdb
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.csproj.CoreCompileInputs.cache
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cache
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cs
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfoInputs.cache
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfo.cs
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorTargetAssemblyInfo.cache
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.dll
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.pdb
+D:\BSAF\Sharif web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.csprojAssemblyReference.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.deps.json
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.json
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.runtimeconfig.dev.json
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.dll
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\bin\Debug\netcoreapp2.1\WebApi.pdb
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.csprojAssemblyReference.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.csproj.CoreCompileInputs.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorAssemblyInfo.cs
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfoInputs.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.AssemblyInfo.cs
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.RazorTargetAssemblyInfo.cache
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.dll
+D:\BSAF\web app & Api\BSAF-Web\WebApi\WebApi\obj\Debug\netcoreapp2.1\WebApi.pdb

@@ -1,0 +1,31 @@
+D:\MHU\web app & Api\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.deps.json
+D:\MHU\web app & Api\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.json
+D:\MHU\web app & Api\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.dev.json
+D:\MHU\web app & Api\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.dll
+D:\MHU\web app & Api\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.pdb
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.csproj.CoreCompileInputs.cache
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cache
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cs
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.AssemblyInfoInputs.cache
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.AssemblyInfo.cs
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorTargetAssemblyInfo.cache
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.dll
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.pdb
+D:\MHU\web app & Api\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.csprojAssemblyReference.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.AssemblyInfoInputs.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.AssemblyInfo.cs
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.csproj.CoreCompileInputs.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cs
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.json
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.deps.json
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.json
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.dev.json
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.dll
+D:\HAP-MIS\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.pdb
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorTargetAssemblyInfo.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.dll
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.pdb
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.genruntimeconfig.cache
+D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.csprojAssemblyReference.cache

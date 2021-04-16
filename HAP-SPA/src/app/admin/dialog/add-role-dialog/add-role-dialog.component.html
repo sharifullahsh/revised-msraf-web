@@ -1,0 +1,36 @@
+<form [formGroup]="roleService.roleForm" novalidate (ngSubmit)="addRole()">
+  <h1 mat-dialog-title>Add new role</h1>
+  <div mat-dialog-content>
+      <div fxLayout="column">
+        <mat-form-field class="full-width">
+          <input type="text" formControlName="roleName" matInput placeholder="Role Name">
+          <mat-error *ngIf="f.roleName.hasError('required')">
+              Password is <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+      <table formArrayName="roleAccess">
+        <tr>
+          <th>Module</th>
+          <th>Permission</th>         
+        </tr>
+        <tr  *ngFor="let menu of menus; let i = index;" >
+          <ng-container [formGroupName]="i">
+          <td > {{menu.controller}}</td> 
+          <td >  <mat-select  formControlName="permission"  multiple>
+            <mat-option value="Add">Add</mat-option>
+            <mat-option value="View">View</mat-option>
+            <mat-option value="Edit">Edit</mat-option>
+            <mat-option value="Delete">Delete</mat-option>
+            <mat-option value="Search">Search</mat-option>
+            <mat-option value="Download">Download</mat-option>
+        </mat-select></td>
+      </ng-container>
+        </tr>
+      </table>
+      </div>
+  </div>
+  <div mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="cancelClick()" >Cancel</button>
+      <button mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
+  </div>
+</form>

@@ -25,7 +25,7 @@ export class UserService {
       updateOn: 'blur'
     }],
     displayName: [null, Validators.required],
-    password: [null, Validators.required],
+    password: [null, Validators.required], 
     confirmPassword: [null, Validators.required],
     region: [null],
     province:[null],

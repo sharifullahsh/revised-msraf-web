@@ -30,7 +30,7 @@ export class UserManagementComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<User> ;
   dataSource2: MatTableDataSource<RoleForRegistration> ;
 
-  searchKey: string;
+  searchKey: string= '';
   menus:Menu[];
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['userName', 'displayName','email', 'region','province', 'roles','actions'];

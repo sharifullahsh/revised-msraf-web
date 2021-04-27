@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Helpers;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using WebAPI.Models.Tables;
 
 namespace WebAPI.Controllers
 {
@@ -16,11 +19,49 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     public class LookupController : ControllerBase
     {
-        private readonly DbContext db = null;
-        public LookupController(DbContext context)
+        private readonly Models.DbContext db = null;
+        private readonly IMapper _mapper;
+
+        public LookupController(Models.DbContext context, IMapper mapper)
         {
             db = context;
+            _mapper = mapper;
         }
+        [HttpPost("addLookupValue")]
+        public bool AddLookupValue([FromBody] LookupValueDto model)
+        {
+            if (model != null)
+            {
+                try
+                {
+                    var _lookupValue = _mapper.Map<LookupValue>(model);
+                    _lookupValue.IsActive = true;
+                    db.LookupValues.Add(_lookupValue);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        [HttpDelete("deleteLookupValue/{valueId}")]
+        public async Task<IActionResult> DeleteLookupValue(int valueId)
+        {
+            if (valueId <= 0) { return BadRequest("Not a valid Id"); }
+            var lookupValue = await db.LookupValues.FindAsync(valueId);
+            if(lookupValue == null)
+            {
+                return NotFound();
+            }
+            lookupValue.IsActive = false;
+            db.SaveChanges();
+            return Ok();
+        }
+
         [HttpGet("initialLookups")]
         public async Task<IActionResult> GetInitialLookups()
         {
@@ -51,6 +92,47 @@ namespace WebAPI.Controllers
             return Ok(districts);
         }
 
+        [HttpGet("LookupTypes")]
+        public async Task<IActionResult> GetLookupTypes()
+        {
+            var lookupTypes = db.LookupTypes.Where(l => l.IsActive == true).Select(l=>
+            new LookupTypesDto{
+                LookupCode = l.LookupCode,
+                LookupName = l.EnName
+            }).ToList();
+            return Ok(lookupTypes);
+        }
+        [HttpGet("lookupValues/{lookupCode}")]
+        public async Task<IActionResult> GetLookupValues(string lookupCode)
+        {
+            var query = db.LookupValues.ToList();
+            if (!string.IsNullOrWhiteSpace(lookupCode))
+            {
+                query = query.Where(l => l.LookupCode == lookupCode).ToList();
+            }
+            var _lookups = query.OrderByDescending(l => l.ValueId).ToList();
+            return Ok(_lookups);
+        }
 
+        //[HttpPut("{valueId}")]
+        //public async Task<ActionResult> Put(int valueId, [FromBody] LookupValueDto lookupValue)
+        //{
+        //    if()
+        //    var data = EmpDetails.Employee.Update(obj);
+        //    EmpDetails.SaveChanges();
+        //    return Ok();
+        //}
+        [HttpGet("isValueCodeAvailable/{valueCode}")]
+        public async Task<bool> IsValueCodeAvailable(string valueCode)
+        {
+            var isTaken = false;
+            var result = await db.LookupValues.Where(l=>l.ValueCode == valueCode).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                isTaken = true;
+                return isTaken; ;
+            }
+            return isTaken;
+        }
     }
 }

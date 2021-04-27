@@ -57,6 +57,7 @@ namespace WebAPI.Controllers
             return Ok(userList);
 
         }
+        
         [Authorize(Roles = "Admin")]
         [HttpGet("getRoles")]
         public async Task<IActionResult> GetRoles()
@@ -119,6 +120,7 @@ namespace WebAPI.Controllers
             var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
             return Ok(roles);
         }
+        
         [Authorize(Roles = "Admin")]
         [HttpPost("editRole")]
         public async Task<IActionResult> EditRole([FromBody] RoleForRegistrationDto model)
@@ -158,6 +160,7 @@ namespace WebAPI.Controllers
             }
             
         }
+        
         [Authorize(Roles = "Admin")]
         [HttpPost("addRole")]
         public async Task<IActionResult> CreateRole([FromBody] RoleForRegistrationDto model)
@@ -187,6 +190,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest("Failed to create the role");
         }
+        
         [Authorize(Roles = "Admin")]
         [HttpPost("register")]
         public async Task<IActionResult> Createuser([FromBody] UserForRegistrationDto model)
@@ -315,6 +319,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Errors.ToString());
         }
+        
         [AllowAnonymous]
         [HttpPost("isOnline")]
         public async Task<IActionResult> IsOnline()

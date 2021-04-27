@@ -12,3 +12,20 @@ D:\MHU\web app & Api\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.AssemblyInfo
 D:\MHU\web app & Api\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.RazorTargetAssemblyInfo.cache
 D:\MHU\web app & Api\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.dll
 D:\MHU\web app & Api\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.pdb
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\appsettings.Development.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\appsettings.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\WebAPI.deps.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\WebAPI.runtimeconfig.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\WebAPI.runtimeconfig.dev.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\WebAPI.dll
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Release\netcoreapp2.1\WebAPI.pdb
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.csprojAssemblyReference.cache
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.AssemblyInfoInputs.cache
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.AssemblyInfo.cs
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.csproj.CoreCompileInputs.cache
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cache
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.RazorAssemblyInfo.cs
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.RazorTargetAssemblyInfo.cache
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.dll
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.pdb
+D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Release\netcoreapp2.1\WebAPI.genruntimeconfig.cache

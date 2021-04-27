@@ -30,6 +30,9 @@ import { environment } from '../environments/environment';
 import { HasRightsDirective } from './_directives/has-rights.directive';
 import { AddRoleDialogComponent } from './admin/dialog/add-role-dialog/add-role-dialog.component';
 import { EditRoleDialogComponent } from './admin/dialog/edit-role-dialog/edit-role-dialog.component';
+import { GeneralLookupsComponent } from './Lookup/general-Lookups/general-lookups.component';
+import { AddLookupDialogComponent } from './Lookup/dialog/add-lookup-dialog/add-lookup-dialog.component';
+import { EditLookupDialogComponent } from './Lookup/dialog/edit-lookup-dialog/edit-lookup-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -51,7 +54,10 @@ export function tokenGetter() {
     EditRoleDialogComponent,
     EditUserDialogComponent,
     AdminChangePassDialogComponent,
-    UserChangePassDialogComponent
+    UserChangePassDialogComponent,
+    GeneralLookupsComponent,
+    AddLookupDialogComponent,
+    EditLookupDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,8 @@ export function tokenGetter() {
   providers: [AuthService, AdminService, AuthGuard,
      HttpInterceptorService, LookupService,],
   entryComponents: [DeleteDialogComponent, AddUserDialogComponent,AddRoleDialogComponent,EditRoleDialogComponent, EditUserDialogComponent,
-  AdminChangePassDialogComponent, UserChangePassDialogComponent],
+  AdminChangePassDialogComponent, UserChangePassDialogComponent,
+AddLookupDialogComponent, EditLookupDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

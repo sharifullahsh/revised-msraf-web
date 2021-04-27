@@ -14,10 +14,13 @@ namespace WebAPI.Helpers
         public AutoMapperProfile()
         {
             CreateMap<ApplicationUser, UserForListDto>();
-            CreateMap<LookupValue,LookupDto>()
-                .ForMember(dest=>dest.LookupName,opt=> {
-                    opt.MapFrom(src => src.EnName.FirstOrDefault());
-                });
+            //CreateMap<LookupValue,LookupDto>()
+            //    .ForMember(dest=>dest.LookupName,opt=> {
+            //        opt.MapFrom(src => src.EnName.FirstOrDefault());
+            //    });
+            CreateMap<LookupValue,LookupValueDto>();
+            CreateMap<LookupValueDto,LookupValue>();
+            
         }
     }
 }

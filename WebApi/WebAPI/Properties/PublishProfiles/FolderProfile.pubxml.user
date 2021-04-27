@@ -6,5 +6,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\MHU\MHU-Published-API</_PublishTargetUrl>
+    <History>True|2021-04-24T10:15:38.4615084Z;</History>
   </PropertyGroup>
 </Project>

@@ -10,7 +10,7 @@ export interface LookupValue{
     enName: string;
     drName: string;
     paName: string;
-    isActive: boolean;
+    isActive?: boolean;
     }
 
 export interface LookupType{

@@ -1,6 +1,6 @@
 <!-- [mat-dialog-close]="data.animal" -->
-<form [formGroup]="lookupService.editLookupForm" novalidate (ngSubmit)="updateLookup()">
-    <h1 mat-dialog-title>Add new lookup</h1>
+<form [formGroup]="lookupService.editLookupForm" novalidate (ngSubmit)="editLookup()">
+    <h1 mat-dialog-title>Edit lookup</h1>
     <div mat-dialog-content>
         <div fxLayout="column">
             <mat-form-field class="full-width">
@@ -14,7 +14,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width" fxFlex="0 1 calc(50% - 32px)">
-                <input formControlName="valueCode" matInput placeholder="Value Code">
+                <input formControlName="valueCode" matInput [attr.disabled]="true" placeholder="Value Code">
                 <mat-error *ngIf="f.valueCode.hasError('required')">
                     Value Code is <strong>required</strong>
                 </mat-error>
@@ -47,4 +47,3 @@
         <button mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
     </div>
 </form>
-Error are {{f.valueCode.errors | json}}

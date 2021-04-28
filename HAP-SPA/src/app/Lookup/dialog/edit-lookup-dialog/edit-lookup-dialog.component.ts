@@ -46,17 +46,17 @@ export class EditLookupDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  updateLookup(){
+  editLookup(){
     this.lookupSubmitted = true;
-    if ( this.lookupService.addLookupForm.invalid){
+    if ( this.lookupService.editLookupForm.invalid){
       return;
     }
-    this.lookupService.updateLookupValue().subscribe((response: any) => {
-      this.alertifyService.success('The lookup has been created successfully');
+    this.lookupService.editLookupValue().subscribe((response: any) => {
+      this.alertifyService.success('The lookup has been updated successfully');
       this.lookupService.addLookupForm.reset();
       this.dialogRef.close(1);
     }, error => {
-      this.alertifyService.error('Unable to create the Lookup');
+      this.alertifyService.error('Unable to updated the Lookup');
     });
   }
 

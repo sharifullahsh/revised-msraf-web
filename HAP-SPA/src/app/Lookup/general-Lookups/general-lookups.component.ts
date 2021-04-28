@@ -76,7 +76,7 @@ constructor(
    this.applyFilter();
  }
 
- deleteLookup(valueId: number){
+ deleteLookupValue(valueId: number){
    console.log("id is >>>>>>>> "+valueId);
    console.log("id is >>>>>>>> "+this.selectedLookupType);
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -88,14 +88,13 @@ constructor(
        this.lookupService.deleteLookupValue(valueId).subscribe((response: any)=>{
          this.dataSource.data.forEach((element,index)=>{
            if(element.valueId == valueId){
-            this.dataSource.data.splice(index, 1);
+            //this.dataSource.data.splice(index, 1);
+            element.isActive = false;
             this.dataSource.paginator = this.paginator;
           //this.table.renderRows();
             //delete this.dataSource.data[index];
            }
          });
-         //this.getAllUserWithRoles();
-         //this.table.renderRows();
          this.alertifyService.success('Lookup has been deleted');
        },error =>{
          this.alertifyService.error('Unable to delete the lookup');
@@ -122,8 +121,6 @@ constructor(
       this.dataSource = new MatTableDataSource(lookupValueData);
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
-      console.log("lookup values are "+ JSON.stringify(lookupValueData));
-
     }
       );
   }
@@ -134,7 +131,7 @@ constructor(
   }
 }
 
- editLookup(lookupValue: LookupValue){
+editLookupValue(lookupValue: LookupValue){
    if (!lookupValue){
      return;
    }
@@ -147,9 +144,22 @@ constructor(
    });
    dialogRef.afterClosed().subscribe(result => {
      if (result === 1){
-       //this.getAllUserWithRoles();
+       this.getLookups();
      }
    });
+ }
+ makeActivelookupValue(valueId:number){
+   this.lookupService.makeActiveLookupValue(valueId).subscribe((response: any)=>{
+    this.dataSource.data.forEach((element,index)=>{
+      if(element.valueId == valueId){
+       element.isActive = true;
+       this.dataSource.paginator = this.paginator;
+      }
+    });
+    this.alertifyService.success('Lookup has been activatedd');
+  },error =>{
+    this.alertifyService.error('Unable to activate the lookup');
+  })
  }
 
 }

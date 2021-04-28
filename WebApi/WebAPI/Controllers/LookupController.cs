@@ -27,26 +27,40 @@ namespace WebAPI.Controllers
             db = context;
             _mapper = mapper;
         }
-        [HttpPost("addLookupValue")]
-        public bool AddLookupValue([FromBody] LookupValueDto model)
+        [HttpPost("saveLookupValue")]
+        public async Task<ActionResult> SaveLookupValue([FromBody] LookupValue model)
         {
-            if (model != null)
+            if (model.ValueId != 0)
             {
-                try
-                {
-                    var _lookupValue = _mapper.Map<LookupValue>(model);
-                    _lookupValue.IsActive = true;
-                    db.LookupValues.Add(_lookupValue);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+                ModelState.Remove("ValueCode");
             }
-            return false;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                if (model.ValueId == 0)
+                {
+                    model.IsActive = true;
+                    await db.LookupValues.AddAsync(model);
+                }
+                else
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.Entry(model).Property(x => x.IsActive).IsModified = false;
+                    db.Entry(model).Property(x => x.ValueCode).IsModified = false;
+                }
+                db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+             
+            }
+            return BadRequest();
         }
+
 
         [HttpDelete("deleteLookupValue/{valueId}")]
         public async Task<IActionResult> DeleteLookupValue(int valueId)
@@ -58,6 +72,20 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
             lookupValue.IsActive = false;
+            db.SaveChanges();
+            return Ok();
+        }
+        
+        [HttpGet("makeActiveLookupValue/{valueId}")]
+        public async Task<IActionResult> MakeActiveLookupValue(int valueId)
+        {
+            if (valueId <= 0) { return BadRequest("Not a valid Id"); }
+            var lookupValue = await db.LookupValues.FindAsync(valueId);
+            if (lookupValue == null)
+            {
+                return NotFound();
+            }
+            lookupValue.IsActive = true;
             db.SaveChanges();
             return Ok();
         }
@@ -102,6 +130,7 @@ namespace WebAPI.Controllers
             }).ToList();
             return Ok(lookupTypes);
         }
+       
         [HttpGet("lookupValues/{lookupCode}")]
         public async Task<IActionResult> GetLookupValues(string lookupCode)
         {
@@ -114,14 +143,6 @@ namespace WebAPI.Controllers
             return Ok(_lookups);
         }
 
-        //[HttpPut("{valueId}")]
-        //public async Task<ActionResult> Put(int valueId, [FromBody] LookupValueDto lookupValue)
-        //{
-        //    if()
-        //    var data = EmpDetails.Employee.Update(obj);
-        //    EmpDetails.SaveChanges();
-        //    return Ok();
-        //}
         [HttpGet("isValueCodeAvailable/{valueCode}")]
         public async Task<bool> IsValueCodeAvailable(string valueCode)
         {

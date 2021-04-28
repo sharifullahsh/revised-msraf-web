@@ -29,13 +29,9 @@ export class LookupService {
   });
 
   editLookupForm: FormGroup = this.fb.group({
+    valueId:[null],
     lookupCode:[null, Validators.required],
-    valueCode: [null,
-    {
-      validators: [Validators.required],
-      asyncValidators: [this.uniqueLookupValueValidator.validate.bind(this.uniqueLookupValueValidator)],
-      updateOn: 'blur'
-    }],
+    valueCode: [null,Validators.required],
     enName: [null, Validators.required],
     drName: [null, Validators.required], 
     paName: [null, Validators.required]
@@ -46,10 +42,10 @@ export class LookupService {
     public fb: FormBuilder) { }
   
   addLookupValue(){
-    return this.http.post(this.baseUrl + 'lookup/addLookupValue', this.addLookupForm.value);
+    return this.http.post(this.baseUrl + 'lookup/saveLookupValue', this.addLookupForm.value);
   }
-  updateLookupValue(){
-    return this.http.put(this.baseUrl + 'lookup/editLookupValue/', this.editLookupForm.value);
+  editLookupValue(){
+    return this.http.post(this.baseUrl + 'lookup/saveLookupValue/', this.editLookupForm.value);
   }
   getInitialLookups(): Observable<InitialLookups>{
     return this.http.get<InitialLookups>(this.baseUrl + 'lookup/initialLookups').pipe(map(response=>{
@@ -66,6 +62,10 @@ export class LookupService {
   deleteLookupValue(valueId: number) {
     return this.http.delete(this.baseUrl + 'lookup/deleteLookupValue/' + valueId);
   }
+  makeActiveLookupValue(valueId: number) {
+    return this.http.get(this.baseUrl + 'lookup/makeActiveLookupValue/' + valueId);
+  }
+  
   getDistrictLookups(provinceCode: string) {
     return this.http.get(this.baseUrl + 'lookup/districtLookups/' + provinceCode);
   }

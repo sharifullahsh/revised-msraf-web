@@ -16,10 +16,8 @@ export class AddLookupDialogComponent implements OnInit {
   lookupSubmitted = false;
   lookupTypes: LookupType[];
   constructor(
-    //public uniqueUserNameValidator: UniqueUserNameValidator,
               public alertifyService: AlertifyService,
               public fb: FormBuilder,
-              //public userService: UserService,
               public dialogRef: MatDialogRef<AddLookupDialogComponent>,
               public lookupService: LookupService ) { }
 
@@ -28,13 +26,6 @@ export class AddLookupDialogComponent implements OnInit {
  }
 
   ngOnInit(): void {
-
-  // this.lookupService.getInitialLookups().subscribe(data => {
-  //   this.regions = data.regions;
-  //   this.allProvinces = data.provinces;
-  // } 
-  //   );
-    //this.lookupTypes = this.lookupService.getLookupTypes();
     this.lookupTypes = this.lookupService.lookupTypes;
   }
 
@@ -42,16 +33,7 @@ export class AddLookupDialogComponent implements OnInit {
     this.lookupService.addLookupForm.reset();
     this.dialogRef.close();
   }
-  // RegionChanged(event:any){
-  //   if(event.value!= undefined){
-  //     this.provinces=this.allProvinces.filter(x=>x.metaData==this.regions.find(r=>r.lookupName==event.value).lookupCode);
-  //   }
-  //   else{
-  //     if(this.provinces!=undefined){
-  //       this.provinces.length=0;
-  //     }
-  //   }
-  // }
+
   addLookup(){
     this.lookupSubmitted = true;
     if ( this.lookupService.addLookupForm.invalid){

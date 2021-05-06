@@ -29,8 +29,6 @@ D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.dll
 D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.pdb
 D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.genruntimeconfig.cache
 D:\HAP-MIS\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.csprojAssemblyReference.cache
-D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
-D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.json
 D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.deps.json
 D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.json
 D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\WebAPI.runtimeconfig.dev.json
@@ -45,4 +43,6 @@ D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorAssem
 D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.RazorTargetAssemblyInfo.cache
 D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.dll
 D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.pdb
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\IOM\revised-msraf-web\WebApi\WebAPI\bin\Debug\netcoreapp2.1\appsettings.json
 D:\IOM\revised-msraf-web\WebApi\WebAPI\obj\Debug\netcoreapp2.1\WebAPI.genruntimeconfig.cache

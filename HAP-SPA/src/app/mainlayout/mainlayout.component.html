@@ -137,17 +137,25 @@
                         </mat-icon>
                         Lookups Management
                     </mat-expansion-panel-header>
-                    <a mat-list-item routerLinkActive="router-link-active">
+                    <a mat-list-item routerLinkActive="router-link-active" [routerLink]="['/Province']">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">location_city</mat-icon>
+                        Province
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active" [routerLink]="['/District']">
                         <mat-icon aria-label="Side nav toggle icon" class="icon-space">location_city</mat-icon>
                         District
                     </a>
-                    <a mat-list-item routerLinkActive="router-link-active">
+                    <a mat-list-item routerLinkActive="router-link-active" [routerLink]="['/Village']">
                         <mat-icon aria-label="Side nav toggle icon" class="icon-space">holiday_village</mat-icon>
                         Village
                     </a>
                     <a mat-list-item routerLinkActive="router-link-active" [routerLink]="['/GeneralLookups']">
                         <mat-icon aria-label="Side nav toggle icon" class="icon-space">list</mat-icon>
                         General Lookups
+                    </a>
+                    <a mat-list-item routerLinkActive="router-link-active" [routerLink]="['/Organization']">
+                        <mat-icon aria-label="Side nav toggle icon" class="icon-space">home</mat-icon>
+                        Organizations
                     </a>
                 </mat-expansion-panel>
                 <mat-divider></mat-divider>

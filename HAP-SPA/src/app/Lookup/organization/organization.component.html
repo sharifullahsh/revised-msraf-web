@@ -9,22 +9,21 @@
             </div>
         </mat-card-header>
         <mat-card-content>
-            <div fxLayout="row wrap" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="0 1 calc(50% - 10px)">
-                    <mat-select placeholder="Select Lookup Type" [(ngModel)]="searchModel.lookupType" name="LookupType" (selectionChange)="lookupTypeChanged($event)">
-                        <mat-option *ngFor="let lookupType of lookupTypes" [value]="lookupType.lookupCode">
-                            {{lookupType.lookupName }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field fxFlex="0 1 calc(50% - 10px)">
-                    <mat-label>Filter Lookup</mat-label>
-                    <input matInput [(ngModel)]="searchModel.lookupName" (keyup)="applyFilter()" name="lookupName" placeholder="Filter Lookup" autocomplete="off">
-                    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchModel.lookupName" (click)="clearFilter()">
-                    <mat-icon>close</mat-icon>
-                </button>
-                </mat-form-field>
-            </div>
+            <form (ngSubmit)="onSearch()" #orgSearchForm="ngForm">
+                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <mat-form-field fxFlex="0 1 calc(50% - 10px)">
+                        <mat-select placeholder="Select Lookup Type" [(ngModel)]="SearchModel.organizationCode" name="OrganizationCode">
+                            <mat-option *ngFor="let lookupType of lookupTypes" [value]="lookupType.lookupCode">
+                                {{lookupType.lookupName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="0 1 calc(50% - 10px)">
+                        <mat-label>Filter Lookup</mat-label>
+                        <input matInput [(ngModel)]="SearchModel.organizationName" [(ngModel)]="SearchModel.OrganizationName" name="OrganizationName" placeholder="Filter Lookup" autocomplete="off">
+                    </mat-form-field>
+                </div>
+            </form>
             <!-- Material table -->
             <div class="mat-elevation-z8">
                 <table mat-table class="full-width-table" aria-label="Elements">

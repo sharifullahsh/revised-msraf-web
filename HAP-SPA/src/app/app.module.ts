@@ -33,6 +33,10 @@ import { EditRoleDialogComponent } from './admin/dialog/edit-role-dialog/edit-ro
 import { GeneralLookupsComponent } from './Lookup/general-Lookups/general-lookups.component';
 import { AddLookupDialogComponent } from './Lookup/dialog/add-lookup-dialog/add-lookup-dialog.component';
 import { EditLookupDialogComponent } from './Lookup/dialog/edit-lookup-dialog/edit-lookup-dialog.component';
+import { ProvinceComponent } from './Lookup/province/province.component';
+import { DistrictComponent } from './Lookup/district/district.component';
+import { VillageComponent } from './Lookup/village/village.component';
+import { OrganizationComponent } from './Lookup/organization/organization.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -58,6 +62,10 @@ export function tokenGetter() {
     GeneralLookupsComponent,
     AddLookupDialogComponent,
     EditLookupDialogComponent,
+    ProvinceComponent,
+    DistrictComponent,
+    VillageComponent,
+    OrganizationComponent,
   ],
   imports: [
     BrowserModule,

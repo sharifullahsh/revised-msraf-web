@@ -1,3 +1,7 @@
+import { VillageComponent } from './Lookup/village/village.component';
+import { DistrictComponent } from './Lookup/district/district.component';
+import { ProvinceComponent } from './Lookup/province/province.component';
+import { OrganizationComponent } from './Lookup/organization/organization.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +26,10 @@ const routes: Routes = [
      }
     ,
     {path: 'GeneralLookups', component: GeneralLookupsComponent},
+    {path: 'Organization', component: OrganizationComponent},
+    {path: 'Province', component: ProvinceComponent},
+    {path: 'District', component: DistrictComponent},
+    {path: 'Village', component: VillageComponent},
     {path: 'userManagement',  data: { roles: ['Admin']}, canActivate: [AuthGuard], component: UserManagementComponent},
     {path: '**' ,component: PageNotFoundComponent}
   ]

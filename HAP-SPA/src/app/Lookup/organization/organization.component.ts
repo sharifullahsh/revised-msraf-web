@@ -1,27 +1,28 @@
-import { EditLookupDialogComponent } from './../dialog/edit-lookup-dialog/edit-lookup-dialog.component';
-import { LookupService } from 'src/app/_services/lookup.service';
-import { LookupValue, LookupType } from './../../models/Lookup';
+import { OrganizationSearch } from './../../models/Search';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { LookupType, LookupValue } from 'src/app/models/Lookup';
 import { DeleteDialogComponent } from 'src/app/shared/dialog/delete/delete-dialog.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { LookupService } from 'src/app/_services/lookup.service';
 import { AddLookupDialogComponent } from '../dialog/add-lookup-dialog/add-lookup-dialog.component';
-import { LookupSearch } from 'src/app/models/Search';
+import { EditLookupDialogComponent } from '../dialog/edit-lookup-dialog/edit-lookup-dialog.component';
 
 @Component({
-  selector: 'app-general-lookups',
-  templateUrl: './general-lookups.component.html',
-  styleUrls: ['./general-lookups.component.css']
+  selector: 'app-organization',
+  templateUrl: './organization.component.html',
+  styleUrls: ['./organization.component.css']
 })
-export class GeneralLookupsComponent implements AfterViewInit, OnInit {
+export class OrganizationComponent implements AfterViewInit, OnInit {
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   //@ViewChild(MatSort) sort: MatSort;
  @ViewChild(MatTable) table: MatTable<LookupValue>;
  dataSource: MatTableDataSource<LookupValue> ;
 
+ searchKey: string;
  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
  displayedColumns = ['valueId', 'lookupCode', 'valueCode', 'enName', 'drName','paName','isActive','actions'];
  lookupTypes: LookupType[];
@@ -33,7 +34,7 @@ constructor(
             public dialog: MatDialog,
             public lookupService: LookupService){
 }
-searchModel =  new LookupSearch();
+SearchModel = new OrganizationSearch();
  ngOnInit() {
    console.log("value is "+this.selectedLookupType);
    console.log("lookuptypes are "+ JSON.stringify(this.lookupTypes));
@@ -45,6 +46,9 @@ searchModel =  new LookupSearch();
   });
    
  }
+ onSearch(){
+   
+ }
 //  getLookupTypes(){
 //   this.lookupService.getLookupTypes().subscribe((data: LookupType[])=>{
 //     this.lookupTypes = data;
@@ -53,7 +57,7 @@ searchModel =  new LookupSearch();
 //     );
 //  }
  getLookups(){
-   this.lookupService.getLookupValues(this.searchModel.lookupType).subscribe((lookupValues: LookupValue[]) => {
+   this.lookupService.getLookupValues("TypeofIncident").subscribe((lookupValues: LookupValue[]) => {
      this.dataSource = new MatTableDataSource(lookupValues);
      this.dataSource.paginator = this.paginator;
      this.table.dataSource = this.dataSource;
@@ -67,13 +71,13 @@ searchModel =  new LookupSearch();
    //this.dataSource.sort = this.sort;
     }
  applyFilter() {
-   this.dataSource.filter = this.searchModel.lookupName.trim().toLowerCase();
+   this.dataSource.filter = this.searchKey.trim().toLowerCase();
    if (this.dataSource.paginator) {
      this.dataSource.paginator.firstPage();
    }
  }
  clearFilter(){
-   this.searchModel.lookupName = '';
+   this.searchKey = '';
    this.applyFilter();
  }
 
@@ -118,13 +122,12 @@ searchModel =  new LookupSearch();
  lookupTypeChanged(event:any){
    console.log("lookup type changed and values is "+ event.value);
   if(event.value!= undefined){
-    this.getLookups();
-    //   this.lookupService.getLookupValues(event.value).subscribe((lookupValueData:LookupValue[])=>{
-    //   this.dataSource = new MatTableDataSource(lookupValueData);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.table.dataSource = this.dataSource;
-    // }
-    //   );
+      this.lookupService.getLookupValues(event.value).subscribe((lookupValueData:LookupValue[])=>{
+      this.dataSource = new MatTableDataSource(lookupValueData);
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    }
+      );
   }
   else{
     if(this.lookupsForSelecteType!=undefined){
@@ -163,5 +166,6 @@ editLookupValue(lookupValue: LookupValue){
     this.alertifyService.error('Unable to activate the lookup');
   })
  }
+
 
 }

@@ -23,8 +23,7 @@ export class GeneralLookupsComponent implements AfterViewInit, OnInit {
  dataSource: MatTableDataSource<LookupValue> ;
 
  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
- displayedColumns = ['valueId', 'lookupCode', 'valueCode', 'enName', 'drName','paName','isActive','actions'];
- lookupTypes: LookupType[];
+ displayedColumns = ['lookupCode', 'valueCode', 'enName', 'drName','paName','isActive','actions'];
  lookupsForSelecteType: LookupValue[];
  filterdLookupForSelecteType: LookupValue[];
  selectedLookupType: string;
@@ -36,10 +35,9 @@ constructor(
 searchModel =  new LookupSearch();
  ngOnInit() {
    console.log("value is "+this.selectedLookupType);
-   console.log("lookuptypes are "+ JSON.stringify(this.lookupTypes));
+   console.log("lookuptypes are "+ JSON.stringify(this.lookupService.lookupTypes));
    //this.lookupService.getAvailableRoles();
    this.lookupService.getLookupTypes().subscribe((data: LookupType[])=>{
-    this.lookupTypes = data;
     //assign the lookupTypes for use in dialogs
     this.lookupService.lookupTypes = data;
   });

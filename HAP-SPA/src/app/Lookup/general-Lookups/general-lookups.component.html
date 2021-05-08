@@ -12,7 +12,7 @@
             <div fxLayout="row wrap" fxLayoutAlign="space-between">
                 <mat-form-field fxFlex="0 1 calc(50% - 10px)">
                     <mat-select placeholder="Select Lookup Type" [(ngModel)]="searchModel.lookupType" name="LookupType" (selectionChange)="lookupTypeChanged($event)">
-                        <mat-option *ngFor="let lookupType of lookupTypes" [value]="lookupType.lookupCode">
+                        <mat-option *ngFor="let lookupType of lookupService.lookupTypes" [value]="lookupType.lookupCode">
                             {{lookupType.lookupName }}
                         </mat-option>
                     </mat-select>
@@ -28,11 +28,6 @@
             <!-- Material table -->
             <div class="mat-elevation-z8">
                 <table mat-table class="full-width-table" aria-label="Elements">
-                    <!-- Value Id Column -->
-                    <ng-container matColumnDef="valueId">
-                        <th mat-header-cell *matHeaderCellDef>Value Id</th>
-                        <td mat-cell *matCellDef="let row">{{row.valueId}}</td>
-                    </ng-container>
                     <!-- Lookup Code Column -->
                     <ng-container matColumnDef="lookupCode">
                         <th mat-header-cell *matHeaderCellDef>Lookup Code</th>

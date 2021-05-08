@@ -12,8 +12,11 @@ export interface LookupValue{
     paName: string;
     isActive?: boolean;
     }
-
+export interface LookupValueSelectList{
+    valueCode?: string;
+    lookupName?: string;
+}
 export interface LookupType{
-    lookupCode: string;
-    lookupName: string;
+    lookupCode?: string;
+    lookupName?: string;
 }

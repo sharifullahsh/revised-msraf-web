@@ -14,6 +14,7 @@ namespace WebAPI.Models
         public virtual DbSet<LookupType> LookupTypes { get; set; }
         public virtual DbSet<LookupValue> LookupValues { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
         
         //newly added
         public virtual DbSet<Menu> Menus { get; set; }

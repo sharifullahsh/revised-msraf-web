@@ -1,61 +1,62 @@
-<div class="lookupValueContainer">
-    <mat-card class="mb10">
-        <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
-            <h1 fxFlex="50%" fxLayoutAlign="start center">Lookup Management</h1>
-            <div fxFlex="50%" fxLayoutAlign="end center">
-                <button mat-icon-button mat-raised-button (click)="addLookup()" color="primary" title="Add new user" aria-label="Add user">
-                    <mat-icon>playlist_add</mat-icon>
-                </button>
-            </div>
-        </mat-card-header>
-        <mat-card-content>
-            <form (ngSubmit)="onSearch()" #orgSearchForm="ngForm">
+<div class="organizationContainer">
+    <form [formGroup]="searchForm" novalidate autocomplete="off" (ngSubmit)="onSearch()">
+        <mat-card>
+            <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
+                <mat-card-title>Search Organization</mat-card-title>
+                <!-- <h1 fxFlex="50%" fxLayoutAlign="start center">Search Organization</h1> -->
+                <div fxFlex="50%" fxLayoutAlign="end center">
+                    <button type="button" mat-icon-button mat-raised-button (click)="addLookup()" color="primary" title="Add new organization" aria-label="Add Organization">
+                        <mat-icon>playlist_add</mat-icon>
+                    </button>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
                 <div fxLayout="row wrap" fxLayoutAlign="space-between">
                     <mat-form-field fxFlex="0 1 calc(50% - 10px)">
-                        <mat-select placeholder="Select Lookup Type" [(ngModel)]="SearchModel.organizationCode" name="OrganizationCode">
-                            <mat-option *ngFor="let lookupType of lookupTypes" [value]="lookupType.lookupCode">
-                                {{lookupType.lookupName }}
+                        <mat-select placeholder="Select Organization Category" formControlName="organizationCategory">
+                            <mat-option *ngFor="let orgCategory of organizationService.orgCategoryList" [value]="orgCategory.valueCode">
+                                {{orgCategory.lookupName }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field fxFlex="0 1 calc(50% - 10px)">
-                        <mat-label>Filter Lookup</mat-label>
-                        <input matInput [(ngModel)]="SearchModel.organizationName" [(ngModel)]="SearchModel.OrganizationName" name="OrganizationName" placeholder="Filter Lookup" autocomplete="off">
+                        <mat-label>Organization Name</mat-label>
+                        <input matInput formControlName="organizationName" placeholder="Organization Name" autocomplete="off">
                     </mat-form-field>
                 </div>
-            </form>
+            </mat-card-content>
+            <mat-card-actions fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="30px">
+                <button mat-button type="button" (click)="resetSearch()">Reset</button>
+                <button mat-button mat-raised-button color="primary" type="submit">Search</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+    <mat-card style="margin-top: 5px;">
+        <!-- <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
+        </mat-card-header> -->
+        <mat-card-content>
             <!-- Material table -->
             <div class="mat-elevation-z8">
                 <table mat-table class="full-width-table" aria-label="Elements">
+                    <!-- index Column -->
+                    <ng-container matColumnDef="#">
+                        <th mat-header-cell *matHeaderCellDef>#</th>
+                        <td mat-cell *matCellDef="let row;let index = index;">{{index+1}}</td>
+                    </ng-container>
                     <!-- Value Id Column -->
-                    <ng-container matColumnDef="valueId">
-                        <th mat-header-cell *matHeaderCellDef>Value Id</th>
-                        <td mat-cell *matCellDef="let row">{{row.valueId}}</td>
+                    <ng-container matColumnDef="organizationCode">
+                        <th mat-header-cell *matHeaderCellDef>Organization Code</th>
+                        <td mat-cell *matCellDef="let row">{{row.organizationCode}}</td>
                     </ng-container>
                     <!-- Lookup Code Column -->
-                    <ng-container matColumnDef="lookupCode">
-                        <th mat-header-cell *matHeaderCellDef>Lookup Code</th>
-                        <td mat-cell *matCellDef="let row">{{row.lookupCode}}</td>
+                    <ng-container matColumnDef="organizationName">
+                        <th mat-header-cell *matHeaderCellDef>Organization Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.organizationName}}</td>
                     </ng-container>
                     <!-- Value Code Column -->
-                    <ng-container matColumnDef="valueCode">
-                        <th mat-header-cell *matHeaderCellDef>Value Code</th>
-                        <td mat-cell *matCellDef="let row">{{row.valueCode}}</td>
-                    </ng-container>
-                    <!-- English Name Column -->
-                    <ng-container matColumnDef="enName">
-                        <th mat-header-cell *matHeaderCellDef>English Name</th>
-                        <td mat-cell *matCellDef="let row">{{row.enName}}</td>
-                    </ng-container>
-                    <!-- Dari Name Column -->
-                    <ng-container matColumnDef="drName">
-                        <th mat-header-cell *matHeaderCellDef>Dari Name</th>
-                        <td mat-cell *matCellDef="let row">{{row.drName}}</td>
-                    </ng-container>
-                    <!-- Pashto Name Column -->
-                    <ng-container matColumnDef="paName">
-                        <th mat-header-cell *matHeaderCellDef>Pashto Name</th>
-                        <td mat-cell *matCellDef="let row">{{row.paName}}</td>
+                    <ng-container matColumnDef="organizationCategory">
+                        <th mat-header-cell *matHeaderCellDef>Organization Category</th>
+                        <td mat-cell *matCellDef="let row">{{row.organizationCategory}}</td>
                     </ng-container>
                     <!-- isActive Column -->
                     <ng-container matColumnDef="isActive">
@@ -97,11 +98,11 @@
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':  selectedLookupType!=''}"></tr>
+                    <!-- <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':  selectedLookupType!=''}"></tr> -->
                     <tr mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(dataSource!=null && dataSource.data.length == 0)}"></tr>
                 </table>
 
-                <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10,25, 50, 100, 250]">
+                <mat-paginator #paginator (page)="pageChange($event)" [length]="length" [(pageIndex)]="pageIndex" [(pageSize)]="pageSize" [pageSizeOptions]="[10,25, 50, 100, 250]">
                 </mat-paginator>
             </div>
 

@@ -155,5 +155,51 @@ namespace WebAPI.Controllers
             }
             return isTaken;
         }
+        #region Organization
+        [HttpPost("organizations")]
+        public async Task<IActionResult> OrganizationPartialList([FromBody] OrganizationSearchDto model)
+        {
+            var organizations = await (from o in db.Organizations
+                                     join l in db.LookupValues on o.OrganizationCategory equals l.ValueCode
+                                     where o.IsActive == true && l.IsActive == true
+                                     select new 
+                                     {
+                                         o.OrganizationId,
+                                         o.OrganizationCode,
+                                         o.OrganizationCategory,
+                                         organizationName = o.EnName,
+                                         organizationCategoryName = l.EnName,
+                                         o.IsActive
+                                     }
+                      ).OrderByDescending(o=>o.OrganizationId).ToListAsync();
+
+            if (!string.IsNullOrEmpty(model.OrganizationCategory))
+            {
+                organizations = organizations.Where(b => b.OrganizationCategory == model.OrganizationCategory).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(model.OrganizationName))
+            {
+                organizations = organizations.Where(b => b.organizationName.ToUpper().Contains(model.OrganizationName.ToUpper())).ToList();
+            }
+            
+            var orgsToReturn = organizations.Select(o =>
+            new 
+            {
+                o.OrganizationCode,
+                o.organizationName,
+                OrganizationCategory = o.organizationCategoryName,
+                o.IsActive,
+            }
+            ).ToList();
+            var valueToReturn = new
+            {
+                total = orgsToReturn.Count,
+                data = orgsToReturn.Skip(model.PageIndex * model.PageSize).Take(model.PageSize).ToList()
+            };
+            return Ok(valueToReturn);
+
+        }
+
+        #endregion
     }
 }

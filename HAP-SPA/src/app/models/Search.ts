@@ -5,10 +5,10 @@ export class LookupSearch {
     ) {  }
   
   }
-export class OrganizationSearch {
-    constructor(
-      public organizationCode?: string,
-      public organizationName?: string
-    ) {  }
-  
-  }
+  export class OrganizationSearchCriteria{
+    public organizationCategory?: string;
+    public organizationName?: string;
+    pageIndex: number;
+    length: number;
+    pageSize: number;
+}

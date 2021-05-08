@@ -1,3 +1,4 @@
+import { EditOrganizationDialogComponent } from './Lookup/dialog/edit-organization-dialog/edit-organization-dialog.component';
 import { AdminChangePassDialogComponent } from './admin/dialog/admin-change-pass-dialog/admin-change-pass-dialog.component';
 import { EditUserDialogComponent } from './admin/dialog/edit-user-dialog/edit-user-dialog.component';
 import { LookupService } from 'src/app/_services/lookup.service';
@@ -37,6 +38,7 @@ import { ProvinceComponent } from './Lookup/province/province.component';
 import { DistrictComponent } from './Lookup/district/district.component';
 import { VillageComponent } from './Lookup/village/village.component';
 import { OrganizationComponent } from './Lookup/organization/organization.component';
+import { AddOrganizationDialogComponent } from './Lookup/dialog/add-organization-dialog/add-organization-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -66,6 +68,8 @@ export function tokenGetter() {
     DistrictComponent,
     VillageComponent,
     OrganizationComponent,
+    AddOrganizationDialogComponent,
+    EditOrganizationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +92,8 @@ export function tokenGetter() {
      HttpInterceptorService, LookupService,],
   entryComponents: [DeleteDialogComponent, AddUserDialogComponent,AddRoleDialogComponent,EditRoleDialogComponent, EditUserDialogComponent,
   AdminChangePassDialogComponent, UserChangePassDialogComponent,
-AddLookupDialogComponent, EditLookupDialogComponent],
+AddLookupDialogComponent, EditLookupDialogComponent,
+AddOrganizationDialogComponent,EditOrganizationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

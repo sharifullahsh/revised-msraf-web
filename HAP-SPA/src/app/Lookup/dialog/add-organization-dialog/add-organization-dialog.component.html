@@ -1,0 +1,37 @@
+<form [formGroup]="organizationService.addOrganizationForm" novalidate (ngSubmit)="addOrganization()">
+    <h1 mat-dialog-title>Add new organization</h1>
+    <div mat-dialog-content>
+        <div fxLayout="column">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Organization Category" formControlName="organizationCategory">
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let orgCategory of organizationService.orgCategoryList" [value]="orgCategory.valueCode">
+                        {{orgCategory.lookupName }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f.organizationCategory.hasError('required')">
+                    Organization category is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+             <mat-form-field class="full-width" fxFlex="0 1 calc(50% - 32px)">
+                <input formControlName="organizationCode" matInput placeholder="Organization Code">
+                <mat-error *ngIf="f.organizationCode.hasError('required')">
+                    Organization Code is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="f.organizationCode.errors?.uniqueValueCode">
+                    Organization Code is <strong>not available</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input formControlName="enName" matInput placeholder="English name">
+                <mat-error *ngIf="isOrgSubmitted && f.enName.hasError('required')">
+                    English name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-button type="button" (click)="cancelClick()">Cancel</button>
+        <button mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
+    </div>
+</form>

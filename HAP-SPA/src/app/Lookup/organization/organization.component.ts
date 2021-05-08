@@ -1,3 +1,4 @@
+import { AddOrganizationDialogComponent } from './../dialog/add-organization-dialog/add-organization-dialog.component';
 import { OrganizationSearchCriteria } from './../../models/Search';
 import { OrganizationService } from './../../_services/organization.service';
 import { LookupValueSelectList } from './../../models/Lookup';
@@ -9,10 +10,10 @@ import { LookupType, LookupValue } from 'src/app/models/Lookup';
 import { DeleteDialogComponent } from 'src/app/shared/dialog/delete/delete-dialog.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { LookupService } from 'src/app/_services/lookup.service';
-import { AddLookupDialogComponent } from '../dialog/add-lookup-dialog/add-lookup-dialog.component';
 import { EditLookupDialogComponent } from '../dialog/edit-lookup-dialog/edit-lookup-dialog.component';
 import { FormBuilder } from '@angular/forms';
 import { OrganizationSearchedList, OrganizationSearchResponse } from 'src/app/models/SearchResponse';
+import { EditOrganizationDialogComponent } from '../dialog/edit-organization-dialog/edit-organization-dialog.component';
 
 @Component({
   selector: 'app-organization',
@@ -87,13 +88,7 @@ getOrganizations() {
  onSearch(){
  this.getOrganizations();
  }
-//  getLookupTypes(){
-//   this.lookupService.getLookupTypes().subscribe((data: LookupType[])=>{
-//     this.lookupTypes = data;
-    
-//   }
-//     );
-//  }
+
 resetSearch(){
   this.pageIndex = 0;
   this.searchForm.reset();
@@ -112,69 +107,51 @@ pageChange(event){
     }
 
 
- deleteLookupValue(valueId: number){
-  //  console.log("id is >>>>>>>> "+valueId);
-  // //  console.log("id is >>>>>>>> "+this.selectedLookupType);
-  //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
-  //    width: '30%',
-  //    data: {title: 'Delete lookup', description: 'Are you sure to delete this lookup?'}
-  //  });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //    if (result === 1){
-  //      this.lookupService.deleteLookupValue(valueId).subscribe((response: any)=>{
-  //        this.dataSource.data.forEach((element,index)=>{
-  //          if(element.valueId == valueId){
-  //           //this.dataSource.data.splice(index, 1);
-  //           element.isActive = false;
-  //           this.dataSource.paginator = this.paginator;
-  //         //this.table.renderRows();
-  //           //delete this.dataSource.data[index];
-  //          }
-  //        });
-  //        this.alertifyService.success('Lookup has been deleted');
-  //      },error =>{
-  //        this.alertifyService.error('Unable to delete the lookup');
-  //      })
-  //      console.log("delete yes clicked");
-  //    }
-  //  });
+ deleteOrganization(organizationId: number){
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+     width: '30%',
+     data: {title: 'Delete Organization', description: 'Are you sure to delete this organization?'}
+   });
+    dialogRef.afterClosed().subscribe(result => {
+     if (result === 1){
+       this.organizationService.deleteOrganization(organizationId).subscribe((response: any)=>{
+         this.dataSource.data.forEach((element,index)=>{
+           if(element.organizationId == organizationId){
+            //this.dataSource.data.splice(index, 1);
+            element.isActive = false;
+            this.dataSource.paginator = this.paginator;
+          //this.table.renderRows();
+            //delete this.dataSource.data[index];
+           }
+         });
+         this.alertifyService.success('Organization has been deleted');
+       },error =>{
+         this.alertifyService.error('Unable to delete the organization');
+       })
+       console.log("delete yes clicked");
+     }
+   });
  }
- addLookup(){
-   const dialogRef = this.dialog.open(AddLookupDialogComponent, {
+ addOrganization(){
+   const dialogRef = this.dialog.open(AddOrganizationDialogComponent, {
      width: '60%',
      data: {}
    });
    dialogRef.afterClosed().subscribe(result => {
      if (result === 1){
-       //this.getLookups();
+       this.getOrganizations();
      }
    });
  }
- lookupTypeChanged(event:any){
-   console.log("lookup type changed and values is "+ event.value);
-  if(event.value!= undefined){
-      this.lookupService.getLookupValues(event.value).subscribe((lookupValueData:LookupValue[])=>{
-      this.dataSource = new MatTableDataSource(lookupValueData);
-      this.dataSource.paginator = this.paginator;
-      this.table.dataSource = this.dataSource;
-    }
-      );
-  }
-  else{
-    // if(this.lookupsForSelecteType!=undefined){
-    //   this.lookupsForSelecteType.length=0;
-    // }
-  }
-}
 
-editLookupValue(lookupValue: LookupValue){
+editOrganization(lookupValue: LookupValue){
    if (!lookupValue){
      return;
    }
    this.lookupService.editLookupForm.patchValue({
      ...lookupValue
    });
-   const dialogRef = this.dialog.open(EditLookupDialogComponent, {
+   const dialogRef = this.dialog.open(EditOrganizationDialogComponent, {
      width: '60%',
      data: {}
    });
@@ -184,17 +161,17 @@ editLookupValue(lookupValue: LookupValue){
      }
    });
  }
- makeActivelookupValue(valueId:number){
-   this.lookupService.makeActiveLookupValue(valueId).subscribe((response: any)=>{
+ makeActiveOrganization(organizationId:number){
+   this.organizationService.makeActiveOrganization(organizationId).subscribe((response: any)=>{
     this.dataSource.data.forEach((element,index)=>{
-      // if(element.valueId == valueId){
-      //  element.isActive = true;
-      //  this.dataSource.paginator = this.paginator;
-      // }
+      if(element.organizationId == organizationId){
+       element.isActive = true;
+       this.dataSource.paginator = this.paginator;
+      }
     });
-    this.alertifyService.success('Lookup has been activatedd');
+    this.alertifyService.success('Organization has been activatedd');
   },error =>{
-    this.alertifyService.error('Unable to activate the lookup');
+    this.alertifyService.error('Unable to activate the organization');
   })
  }
 

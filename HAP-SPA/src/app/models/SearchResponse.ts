@@ -1,5 +1,5 @@
 export interface OrganizationSearchedList{
-    organizationId?: string;
+    organizationId?: number;
     organizationCode?: string;
     organizationName?: string;
     organizationCategory?: string;

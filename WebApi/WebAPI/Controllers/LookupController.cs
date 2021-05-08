@@ -27,6 +27,7 @@ namespace WebAPI.Controllers
             db = context;
             _mapper = mapper;
         }
+    #region general lookup
         [HttpPost("saveLookupValue")]
         public async Task<ActionResult> SaveLookupValue([FromBody] LookupValue model)
         {
@@ -155,13 +156,15 @@ namespace WebAPI.Controllers
             }
             return isTaken;
         }
-        #region Organization
+    #endregion
+
+    #region Organization
         [HttpPost("organizations")]
         public async Task<IActionResult> OrganizationPartialList([FromBody] OrganizationSearchDto model)
         {
             var organizations = await (from o in db.Organizations
                                      join l in db.LookupValues on o.OrganizationCategory equals l.ValueCode
-                                     where o.IsActive == true && l.IsActive == true
+                                     where l.IsActive == true
                                      select new 
                                      {
                                          o.OrganizationId,
@@ -185,6 +188,7 @@ namespace WebAPI.Controllers
             var orgsToReturn = organizations.Select(o =>
             new 
             {
+                o.OrganizationId,
                 o.OrganizationCode,
                 o.organizationName,
                 OrganizationCategory = o.organizationCategoryName,
@@ -198,6 +202,81 @@ namespace WebAPI.Controllers
             };
             return Ok(valueToReturn);
 
+        }
+
+        [HttpDelete("deleteOrganization/{organizationId}")]
+        public async Task<IActionResult> DeleteOrganization(int organizationId)
+        {
+            if (organizationId <= 0) { return BadRequest("Not a valid Id"); }
+            var organization = await db.Organizations.FindAsync(organizationId);
+            if (organization == null)
+            {
+                return NotFound();
+            }
+            organization.IsActive = false;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpGet("makeActiveOrganization/{organizationId}")]
+        public async Task<IActionResult> MakeActiveOrganization(int organizationId)
+        {
+            if (organizationId <= 0) { return BadRequest("Not a valid Id"); }
+            var organization = await db.Organizations.FindAsync(organizationId);
+            if (organization == null)
+            {
+                return NotFound();
+            }
+            organization.IsActive = true;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost("saveOrganization")]
+        public async Task<ActionResult> SaveOrganization([FromBody] Organization model)
+        {
+            if (model.OrganizationId != 0)
+            {
+                ModelState.Remove("OrganizationCode");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                if (model.OrganizationId == 0)
+                {
+                    model.IsActive = true;
+                    await db.Organizations.AddAsync(model);
+                }
+                else
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.Entry(model).Property(x => x.IsActive).IsModified = false;
+                    db.Entry(model).Property(x => x.OrganizationCode).IsModified = false;
+                }
+                db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("isOrgCodeAvailable/{valueCode}")]
+        public async Task<bool> IsOrgCodeAvailable(string orgCode)
+        {
+            var isTaken = false;
+            var result = await db.Organizations.Where(o => o.OrganizationCode == orgCode).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                isTaken = true;
+                return isTaken; ;
+            }
+            return isTaken;
         }
 
         #endregion

@@ -170,7 +170,7 @@ namespace WebAPI.Controllers
                                          o.OrganizationId,
                                          o.OrganizationCode,
                                          o.OrganizationCategory,
-                                         organizationName = o.EnName,
+                                         o.EnName,
                                          organizationCategoryName = l.EnName,
                                          o.IsActive
                                      }
@@ -182,7 +182,7 @@ namespace WebAPI.Controllers
             }
             if (!string.IsNullOrWhiteSpace(model.OrganizationName))
             {
-                organizations = organizations.Where(b => b.organizationName.ToUpper().Contains(model.OrganizationName.ToUpper())).ToList();
+                organizations = organizations.Where(b => b.EnName.ToUpper().Contains(model.OrganizationName.ToUpper())).ToList();
             }
             
             var orgsToReturn = organizations.Select(o =>
@@ -190,8 +190,9 @@ namespace WebAPI.Controllers
             {
                 o.OrganizationId,
                 o.OrganizationCode,
-                o.organizationName,
-                OrganizationCategory = o.organizationCategoryName,
+                o.EnName,
+                o.organizationCategoryName,
+                OrganizationCategory = o.OrganizationCategory,
                 o.IsActive,
             }
             ).ToList();

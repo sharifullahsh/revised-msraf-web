@@ -15,10 +15,8 @@ export class EditLookupDialogComponent implements OnInit {
   lookupSubmitted = false;
   lookupTypes: LookupType[];
   constructor(
-    //public uniqueUserNameValidator: UniqueUserNameValidator,
               public alertifyService: AlertifyService,
               public fb: FormBuilder,
-              //public userService: UserService,
               public dialogRef: MatDialogRef<EditLookupDialogComponent>,
               public lookupService: LookupService ) { }
 
@@ -27,22 +25,10 @@ export class EditLookupDialogComponent implements OnInit {
  }
 
   ngOnInit(): void {
-
-  // this.lookupService.getInitialLookups().subscribe(data => {
-  //   this.regions = data.regions;
-  //   this.allProvinces = data.provinces;
-  // } 
-  //   );
-   // this.getLookupTypes();
    this.lookupTypes = this.lookupService.lookupTypes;
- console.log("edit form data "+ JSON.stringify(this.lookupService.editLookupForm.value));
   }
-  // getLookupTypes(){
-  //   this.lookupTypes = this.lookupService.getLookupTypes();
-   
-  //  }
   cancelClick(){
-    this.lookupService.addLookupForm.reset();
+    this.lookupService.editLookupForm.reset();
     this.dialogRef.close();
   }
 

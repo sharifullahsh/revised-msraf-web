@@ -1,11 +1,8 @@
 import { OrganizationService } from './../../../_services/organization.service';
-import { LookupType } from './../../../models/Lookup';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Lookup } from 'src/app/models/Lookup';
 import { AlertifyService } from 'src/app/_services/alertify.service';
-import { LookupService } from 'src/app/_services/lookup.service';
 
 @Component({
   selector: 'app-add-lookup-dialog',
@@ -14,7 +11,6 @@ import { LookupService } from 'src/app/_services/lookup.service';
 })
 export class AddOrganizationDialogComponent implements OnInit {
   isOrgSubmitted = false;
- // lookupTypes: LookupType[];
   constructor(
               public alertifyService: AlertifyService,
               public fb: FormBuilder,
@@ -26,7 +22,6 @@ export class AddOrganizationDialogComponent implements OnInit {
  }
 
   ngOnInit(): void {
-   // this.lookupTypes = this.organizationService.lookupTypes;
   }
 
   cancelClick(){

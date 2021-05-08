@@ -6,14 +6,14 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { LookupType, LookupValue } from 'src/app/models/Lookup';
+import { LookupValue } from 'src/app/models/Lookup';
 import { DeleteDialogComponent } from 'src/app/shared/dialog/delete/delete-dialog.component';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { LookupService } from 'src/app/_services/lookup.service';
-import { EditLookupDialogComponent } from '../dialog/edit-lookup-dialog/edit-lookup-dialog.component';
 import { FormBuilder } from '@angular/forms';
 import { OrganizationSearchedList, OrganizationSearchResponse } from 'src/app/models/SearchResponse';
 import { EditOrganizationDialogComponent } from '../dialog/edit-organization-dialog/edit-organization-dialog.component';
+import { Organization } from 'src/app/models/organization';
 
 @Component({
   selector: 'app-organization',
@@ -26,13 +26,12 @@ export class OrganizationComponent implements AfterViewInit, OnInit {
   length = 100;
   pageSize = 10;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  //@ViewChild(MatSort) sort: MatSort;
  @ViewChild(MatTable) table: MatTable<OrganizationSearchedList>;
  dataSource: MatTableDataSource<OrganizationSearchedList> ;
 
  searchKey: string;
  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
- displayedColumns = ['#', 'organizationCode', 'organizationName', 'organizationCategory', 'isActive','actions'];
+ displayedColumns = ['#', 'organizationCode', 'enName', 'organizationCategoryName', 'isActive','actions'];
 
 
 constructor(
@@ -50,7 +49,6 @@ searchForm = this.fb.group({
  ngOnInit() {
    this.organizationSearchCriteria =  new OrganizationSearchCriteria();
    console.log("lookuptypes are "+ JSON.stringify(this.organizationService.orgCategoryList));
-   //this.lookupService.getAvailableRoles();
    this.lookupService.getLookupValues("ORGTYP").subscribe((data: LookupValue[])=>{
     this.organizationService.orgCategoryList = data.map(l=> {
       let orgType:LookupValueSelectList={};
@@ -58,7 +56,6 @@ searchForm = this.fb.group({
       orgType.valueCode = l.valueCode;
       return orgType;
     });
-    //assign the lookupTypes for use in dialogs
   });
    this.getOrganizations();
  }
@@ -144,12 +141,13 @@ pageChange(event){
    });
  }
 
-editOrganization(lookupValue: LookupValue){
-   if (!lookupValue){
+editOrganization(organization: Organization){
+  console.log("organization data is >>>>>> "+ JSON.stringify(organization));
+   if (!organization){
      return;
    }
-   this.lookupService.editLookupForm.patchValue({
-     ...lookupValue
+   this.organizationService.editOrganizationForm.patchValue({
+     ...organization
    });
    const dialogRef = this.dialog.open(EditOrganizationDialogComponent, {
      width: '60%',
@@ -157,7 +155,7 @@ editOrganization(lookupValue: LookupValue){
    });
    dialogRef.afterClosed().subscribe(result => {
      if (result === 1){
-       //this.getLookups();
+       this.getOrganizations();
      }
    });
  }

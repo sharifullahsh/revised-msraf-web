@@ -27,11 +27,9 @@ export class OrganizationService {
 
   editOrganizationForm: FormGroup = this.fb.group({
     organizationId:[null],
-    lookupCode:[null, Validators.required],
-    valueCode: [null,Validators.required],
+    organizationCategory:[null, Validators.required],
+    organizationCode: [{value:null,disabled:true}],
     enName: [null, Validators.required],
-    drName: [null, Validators.required], 
-    paName: [null, Validators.required]
   });
   constructor(private http: HttpClient,
     public fb: FormBuilder,
@@ -47,5 +45,8 @@ export class OrganizationService {
     }
     addOrganization(){
       return this.http.post(this.baseUrl + 'lookup/saveOrganization', this.addOrganizationForm.value);
+    }
+    editOrganization(){
+      return this.http.post(this.baseUrl + 'lookup/saveOrganization/', this.editOrganizationForm.value);
     }
 }

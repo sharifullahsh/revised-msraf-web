@@ -30,8 +30,8 @@ export class LookupService {
 
   editLookupForm: FormGroup = this.fb.group({
     valueId:[null],
-    lookupCode:[null, Validators.required],
-    valueCode: [null,Validators.required],
+    lookupCode:[null,Validators.required],
+    valueCode: [{value:null,disabled: true}],
     enName: [null, Validators.required],
     drName: [null, Validators.required], 
     paName: [null, Validators.required]

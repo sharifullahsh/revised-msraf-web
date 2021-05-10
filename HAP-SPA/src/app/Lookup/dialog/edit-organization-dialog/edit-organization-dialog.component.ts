@@ -38,11 +38,11 @@ export class EditOrganizationDialogComponent implements OnInit {
       return;
     }
     this.organizationService.editOrganization().subscribe((response: any) => {
-      this.alertifyService.success('The lookup has been updated successfully');
+      this.alertifyService.success('The organization has been updated successfully');
       this.organizationService.editOrganizationForm.reset();
       this.dialogRef.close(1);
     }, error => {
-      this.alertifyService.error('Unable to updated the Lookup');
+      this.alertifyService.error('Unable to updated the organization');
     });
   }
 }

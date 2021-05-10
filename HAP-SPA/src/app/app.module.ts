@@ -39,6 +39,8 @@ import { DistrictComponent } from './Lookup/district/district.component';
 import { VillageComponent } from './Lookup/village/village.component';
 import { OrganizationComponent } from './Lookup/organization/organization.component';
 import { AddOrganizationDialogComponent } from './Lookup/dialog/add-organization-dialog/add-organization-dialog.component';
+import { EditProvinceDialogComponent } from './Lookup/dialog/edit-province-dialog/edit-province-dialog.component';
+import { AddProvinceDialogComponent } from './Lookup/dialog/add-province-dialog/add-province-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -69,7 +71,9 @@ export function tokenGetter() {
     VillageComponent,
     OrganizationComponent,
     AddOrganizationDialogComponent,
-    EditOrganizationDialogComponent
+    EditOrganizationDialogComponent,
+    EditProvinceDialogComponent,
+    AddProvinceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,8 @@ export function tokenGetter() {
   entryComponents: [DeleteDialogComponent, AddUserDialogComponent,AddRoleDialogComponent,EditRoleDialogComponent, EditUserDialogComponent,
   AdminChangePassDialogComponent, UserChangePassDialogComponent,
 AddLookupDialogComponent, EditLookupDialogComponent,
-AddOrganizationDialogComponent,EditOrganizationDialogComponent],
+AddOrganizationDialogComponent,EditOrganizationDialogComponent,
+AddProvinceDialogComponent, EditProvinceDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

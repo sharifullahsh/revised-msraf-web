@@ -13,7 +13,7 @@ import { LookupService } from 'src/app/_services/lookup.service';
 import { FormBuilder } from '@angular/forms';
 import { OrganizationSearchedList, OrganizationSearchResponse } from 'src/app/models/SearchResponse';
 import { EditOrganizationDialogComponent } from '../dialog/edit-organization-dialog/edit-organization-dialog.component';
-import { Organization } from 'src/app/models/organization';
+import { Organization } from 'src/app/models/Organization';
 
 @Component({
   selector: 'app-organization',
@@ -29,7 +29,6 @@ export class OrganizationComponent implements AfterViewInit, OnInit {
  @ViewChild(MatTable) table: MatTable<OrganizationSearchedList>;
  dataSource: MatTableDataSource<OrganizationSearchedList> ;
 
- searchKey: string;
  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
  displayedColumns = ['#', 'organizationCode', 'enName', 'organizationCategoryName', 'isActive','actions'];
 
@@ -41,14 +40,12 @@ constructor(
             private fb: FormBuilder,
             public lookupService: LookupService){
 }
-      public ?: string
 searchForm = this.fb.group({
   organizationCategory: [null],
   organizationName: [null]
 });
  ngOnInit() {
    this.organizationSearchCriteria =  new OrganizationSearchCriteria();
-   console.log("lookuptypes are "+ JSON.stringify(this.organizationService.orgCategoryList));
    this.lookupService.getLookupValues("ORGTYP").subscribe((data: LookupValue[])=>{
     this.organizationService.orgCategoryList = data.map(l=> {
       let orgType:LookupValueSelectList={};
@@ -78,7 +75,7 @@ getOrganizations() {
       this.paginator.length = response.total;
       this.table.dataSource = this.dataSource;
     }, error => {
-      this.alertifyService.error('Can not load beneficiaries');
+      this.alertifyService.error('Can not load organization');
       console.log('error ' + JSON.stringify(error));
     });  
 }
@@ -142,7 +139,6 @@ pageChange(event){
  }
 
 editOrganization(organization: Organization){
-  console.log("organization data is >>>>>> "+ JSON.stringify(organization));
    if (!organization){
      return;
    }

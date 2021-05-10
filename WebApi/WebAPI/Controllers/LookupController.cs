@@ -192,7 +192,7 @@ namespace WebAPI.Controllers
                 o.OrganizationCode,
                 o.EnName,
                 o.organizationCategoryName,
-                OrganizationCategory = o.OrganizationCategory,
+                o.OrganizationCategory,
                 o.IsActive,
             }
             ).ToList();
@@ -281,5 +281,148 @@ namespace WebAPI.Controllers
         }
 
         #endregion
+        #region province
+        [HttpPost("provinces")]
+        public async Task<IActionResult> GetProvincePartialList([FromBody] ProvinceSearchDto model)
+        {
+            var provinces = await (from p in db.Provinces
+                                   join l in db.LookupValues on p.RegionId equals l.ValueCode
+                                   where l.IsActive == true
+                                   select new
+                                   {
+                                       p.ProvinceId,
+                                       p.RegionId,
+                                       p.EnName,
+                                       p.DrName,
+                                       p.PaName,
+                                       p.IsActive,
+                                       RegionName = l.EnName
+                                   }
+                      ).ToListAsync();
+
+            if (!string.IsNullOrEmpty(model.RegionId))
+            {
+                provinces = provinces.Where(p => p.RegionId == model.RegionId).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(model.ProvinceName))
+            {
+                provinces = provinces.Where(p =>
+                p.EnName.ToUpper().Contains(model.ProvinceName.ToUpper()) ||
+                p.DrName.ToUpper().Contains(model.ProvinceName.ToUpper()) ||
+                p.PaName.ToUpper().Contains(model.ProvinceName.ToUpper())
+                ).ToList();
+            }
+
+            var provincesToReturn = provinces.Select(p =>
+            new
+            {
+                p.ProvinceId,
+                p.RegionName,
+                p.RegionId,
+                p.EnName,
+                p.DrName,
+                p.PaName,
+                p.IsActive
+
+            }
+            ).ToList();
+            var valueToReturn = new
+            {
+                total = provincesToReturn.Count,
+                data = provincesToReturn.Skip(model.PageIndex * model.PageSize).Take(model.PageSize).ToList()
+            };
+            return Ok(valueToReturn);
+
+        }
+
+        //regions
+        [HttpGet("regions")]
+        public async Task<IActionResult> GetRegionList()
+        {
+            var regions = await db.Regions.ToListAsync();
+            return Ok(regions);
+
+        }
+
+        [HttpDelete("deleteProvince/{provinceId}")]
+        public async Task<IActionResult> DeleteProvince(string provinceId)
+        {
+            if (string.IsNullOrWhiteSpace(provinceId)) { return BadRequest("Not a valid Id"); }
+            var provicne = await db.Provinces.FindAsync(provinceId);
+            if (provicne == null)
+            {
+                return NotFound();
+            }
+            provicne.IsActive = false;
+            db.SaveChanges();
+            return Ok();
+        }
+        [HttpGet("makeActiveProvince/{provinceId}")]
+        public async Task<IActionResult> MakeActiveProvince(string provinceId)
+        {
+            if (string.IsNullOrWhiteSpace(provinceId)) { return BadRequest("Not a valid Id"); }
+            var province = await db.Provinces.FindAsync(provinceId);
+            if (province == null)
+            {
+                return NotFound();
+            }
+            province.IsActive = true;
+            db.SaveChanges();
+            return Ok();
+        }
+        
+        [HttpPost("saveProvince")]
+        public async Task<ActionResult> SaveProvince([FromBody] Province model)
+        {
+
+            if (string.IsNullOrWhiteSpace(model.ProvinceId))
+            {
+                return BadRequest();
+            }
+            var provinceInDb = db.Provinces.FirstOrDefault(p => p.ProvinceId == model.ProvinceId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                if (provinceInDb == null)
+                {
+                    model.IsActive = true;
+                    await db.Provinces.AddAsync(model);
+                }
+                else
+                {
+                    provinceInDb.RegionId = model.RegionId;
+                    provinceInDb.EnName = model.EnName;
+                    provinceInDb.DrName = model.DrName;
+                    provinceInDb.PaName = model.PaName;
+            }
+            db.SaveChanges();
+            return Ok();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("isProvinceIdAvailable/{provinceId}")]
+        public async Task<bool> IsProvinceIdAvailable(string provinceId)
+        {
+            var isTaken = false;
+            var result = await db.Provinces.Where(p => p.ProvinceId == provinceId).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                isTaken = true;
+                return isTaken; ;
+            }
+            return isTaken;
+        }
+
+        #endregion
+
     }
 }

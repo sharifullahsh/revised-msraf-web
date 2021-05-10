@@ -1,0 +1,49 @@
+<form [formGroup]="provinceService.addProvinceForm" novalidate (ngSubmit)="addProvince()">
+    <h1 mat-dialog-title>Add new organization</h1>
+    <div mat-dialog-content>
+        <div fxLayout="column">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Region" formControlName="regionId">
+                    <mat-option>---</mat-option>
+                    <mat-option *ngFor="let region of provinceService.regionList" [value]="region.regionID">
+                        {{region.enName }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f.regionId.hasError('required')">
+                    Region is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+             <mat-form-field class="full-width" fxFlex="0 1 calc(50% - 32px)">
+                <input formControlName="provinceId" matInput placeholder="Province Id">
+                <mat-error *ngIf="f.provinceId.hasError('required')">
+                    ProvinceId is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="f.provinceId.errors?.uniqueProvinceId">
+                    Province Id is <strong>not available</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input formControlName="enName" matInput placeholder="English name">
+                <mat-error *ngIf="isProvinceSubmitted && f.enName.hasError('required')">
+                    English name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input formControlName="drName" matInput placeholder="Dari name">
+                <mat-error *ngIf="isProvinceSubmitted && f.drName.hasError('required')">
+                    Dari name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" fxFlex="0 1 calc( 50% - 32px)">
+                <input formControlName="paName" matInput placeholder="Pashto name">
+                <mat-error *ngIf="isProvinceSubmitted && f.paName.hasError('required')">
+                    Pashto name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button mat-button type="button" (click)="cancelClick()">Cancel</button>
+        <button mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
+    </div>
+</form>

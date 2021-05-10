@@ -12,3 +12,10 @@ export class LookupSearch {
     length: number;
     pageSize: number;
 }
+export class ProvinceSearchCriteria{
+  public regionId?: string;
+  public provinceName?: string;
+  pageIndex: number;
+  length: number;
+  pageSize: number;
+}

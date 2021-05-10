@@ -14,7 +14,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="full-width" fxFlex="0 1 calc(50% - 32px)">
-                <input formControlName="organizationCode" matInput [attr.disabled]="true" placeholder="Organization Code">
+                <input formControlName="organizationCode" matInput [readOnly]="true" placeholder="Organization Code">
                 <mat-error *ngIf="f.organizationCode.hasError('required')">
                     Organization Code is <strong>required</strong>
                 </mat-error>

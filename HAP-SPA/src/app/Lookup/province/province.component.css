@@ -1,0 +1,16 @@
+.full-width-table {
+    width: 100%;
+}
+
+div .mat-card-header-text {
+    margin: 0 16px;
+}
+
+.provinceContainer {
+    margin: 10px;
+}
+
+.mat-footer-cell {
+    text-align: center;
+    font-style: italic;
+}

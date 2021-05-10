@@ -18,7 +18,7 @@
                 <mat-error *ngIf="f.organizationCode.hasError('required')">
                     Organization Code is <strong>required</strong>
                 </mat-error>
-                <mat-error *ngIf="f.organizationCode.errors?.uniqueValueCode">
+                <mat-error *ngIf="f.organizationCode.errors?.uniqueOrganizationCode">
                     Organization Code is <strong>not available</strong>
                 </mat-error>
             </mat-form-field>

@@ -28,7 +28,7 @@ export class OrganizationService {
   editOrganizationForm: FormGroup = this.fb.group({
     organizationId:[null],
     organizationCategory:[null, Validators.required],
-    organizationCode: [{value:null,disabled:true}],
+    organizationCode: [null],
     enName: [null, Validators.required],
   });
   constructor(private http: HttpClient,
